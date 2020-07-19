@@ -105,16 +105,16 @@ $(function() {
       : selectCell(cell)
   }
 
-  function getCell(suit, rank) {
+  function buildCell(suit, rank) {
     const cell = $('<td></td>').html(`${rank.character} <span class="icon">${suit.icon}</span>`)
     cell.on('click', () => toggleSelectedCell(cell))
     return cell
   }
 
-  function getTrackingRow(suit) {
+  function buildRow(suit) {
     const row = $('<tr></tr>')
     const rowCells = ranks.map(rank => {
-      return getCell(suit, rank)
+      return buildCell(suit, rank)
     })
 
     const suitName = suit.name
@@ -129,7 +129,7 @@ $(function() {
   function buildTrackingTable() {
     const trackingTableWrapper = $('#tracking-table-wrapper')
     const trackingTable = $('<table id="tracking-table"></table>')
-    const rows = suits.map(suit => getTrackingRow(suit))
+    const rows = suits.map(suit => buildRow(suit))
 
     trackingTable.append(...rows)
 
