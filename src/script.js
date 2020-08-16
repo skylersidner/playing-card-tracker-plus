@@ -19,11 +19,6 @@ const suits = [
 
 const ranks = [
   {
-    name: 'Ace',
-    value: 1,
-    character: 'A'
-  },
-  {
     name: 'Two',
     value: 2,
     character: '2'
@@ -82,6 +77,11 @@ const ranks = [
     name: 'King',
     value: 13,
     character: 'K'
+  },
+  {
+    name: 'Ace',
+    value: 14,
+    character: 'A'
   }
 ]
 
