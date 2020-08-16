@@ -81,7 +81,7 @@ const ranks = [
   {
     name: 'Ace',
     value: 14,
-    character: 'H'
+    character: 'A'
   }
 ]
 
