@@ -19,11 +19,6 @@ const suits = [
 
 const baseRanks = [
   {
-    name: 'Ace',
-    value: 1,
-    character: 'A'
-  },
-  {
     name: 'Two',
     value: 2,
     character: '2'
