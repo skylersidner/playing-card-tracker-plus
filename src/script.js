@@ -17,7 +17,7 @@ const suits = [
   }
 ]
 
-const ranks = [
+const baseRanks = [
   {
     name: 'Ace',
     value: 1,
@@ -82,9 +82,13 @@ const ranks = [
     name: 'King',
     value: 13,
     character: 'K'
+  },
+  {
+    name: 'Ace',
+    value: 14,
+    character: 'A'
   }
 ]
-
 
 let cardSuit, cardRank
 
@@ -111,8 +115,9 @@ $(function() {
     return cell
   }
 
-  function buildRow(suit) {
+  function buildRow(suit, ranks) {
     const row = $('<tr></tr>')
+
     const rowCells = ranks.map(rank => {
       return buildCell(suit, rank)
     })
@@ -129,11 +134,23 @@ $(function() {
   function buildTrackingTable() {
     const trackingTableWrapper = $('#tracking-table-wrapper')
     const trackingTable = $('<table id="tracking-table"></table>')
-    const rows = suits.map(suit => buildRow(suit))
+
+    const aceToggle = $('#ace-high-toggle')
+    const isChecked = aceToggle.is(":checked")
+
+    let ranks
+    if (isChecked) {
+      ranks = baseRanks.slice(1, 14) // use end ace
+    } else {
+      ranks = baseRanks.slice(0, 13) // use beginning ace
+    }
+
+    const rows = suits.map(suit => buildRow(suit, ranks))
 
     trackingTable.append(...rows)
 
-    trackingTableWrapper.append(trackingTable)
+
+    trackingTableWrapper.html(trackingTable)
   }
 
   function resetTable() {
@@ -145,6 +162,14 @@ $(function() {
     $('#reset').on('click', () => resetTable())
   }
 
+  function createAceHighLowToggle() {
+    const toggle = $('<input type="checkbox" id="ace-high-toggle">Ace High (will reset form)</input>')
+    toggle.on('click', () => buildTrackingTable())
+
+    toggle.insertAfter('#header')
+  }
+
+  createAceHighLowToggle()
   buildTrackingTable()
   bindResetButton()
 })
