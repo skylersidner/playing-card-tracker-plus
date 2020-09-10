@@ -19,6 +19,11 @@ const suits = [
 
 const baseRanks = [
   {
+    name: 'Ace',
+    value: 1,
+    character: 'A'
+  },
+  {
     name: 'Two',
     value: 2,
     character: '2'
@@ -154,7 +159,12 @@ $(function() {
   }
 
   function bindResetButton() {
-    $('#reset').on('click', () => resetTable())
+    $('#reset').on('click', () => {
+      const isConfirmed = confirmReset()      
+      if (isConfirmed) {
+        resetTable()
+      } 
+    })
   }
 
   function createAceHighLowToggle() {
@@ -164,7 +174,13 @@ $(function() {
     toggle.insertAfter('#header')
   }
 
+  
+  function confirmReset() {
+    return confirm("Are you sure you want to reset the table?");
+  } 
+  
   createAceHighLowToggle()
   buildTrackingTable()
   bindResetButton()
 })
+
