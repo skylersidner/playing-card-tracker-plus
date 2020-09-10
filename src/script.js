@@ -174,6 +174,7 @@ $(function() {
     toggle.insertAfter('#header')
   }
 
+  
   function confirmReset() {
     return confirm("Are you sure you want to reset the table?");
   } 
