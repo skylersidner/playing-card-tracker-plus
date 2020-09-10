@@ -159,7 +159,7 @@ $(function() {
   }
 
   function bindResetButton() {
-    $('#reset').on('click', () =>{
+    $('#reset').on('click', () => {
       const isConfirmed = confirmReset()      
       if (isConfirmed) {
         resetTable()
