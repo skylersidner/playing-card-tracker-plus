@@ -159,17 +159,34 @@ $(function() {
   }
 
   function bindResetButton() {
-    $('#reset').on('click', () => resetTable())
+    $('#reset').on('click', () => {
+      const isConfirmed = confirmReset()      
+      if (isConfirmed) {
+        resetTable()
+      }
+    })
   }
 
   function createAceHighLowToggle() {
     const toggle = $('<input type="checkbox" id="ace-high-toggle">Ace High (will reset form)</input>')
-    toggle.on('click', () => buildTrackingTable())
+    toggle.on('click', () => onAceToggleClick())
 
     toggle.insertAfter('#header')
   }
 
+  function onAceToggleClick() {
+    const isConfirmed = confirmReset()
+    if (isConfirmed) {
+      buildTrackingTable()
+    }
+  }
+  
+  function confirmReset() {
+    return confirm("Are you sure you want to reset the table?");
+  } 
+  
   createAceHighLowToggle()
   buildTrackingTable()
   bindResetButton()
 })
+
