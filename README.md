@@ -4,7 +4,7 @@ Tracks which cards have been played in a game so far
 ##Improvements:
 * ~~Allow the Ace to be either “high” or “low” (right side or left side of the rows) with a toggle~~
 * ~~Add confirmation popup for reset~~
-* Add Jquery local script file and remove cdn link
+* ~~Add Jquery local script file and remove cdn link~~
 * Add a color-picker and a way to select each suit
 * Add different sizing/scaling with radio buttons
 * Add tabs for “Tracking” and “Settings” and move options to settings tab
