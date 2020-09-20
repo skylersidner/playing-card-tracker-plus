@@ -188,5 +188,17 @@ $(function() {
   createAceHighLowToggle()
   buildTrackingTable()
   bindResetButton()
+
+  //documentation can be found at https://iro.js.org
+
+  const iro = window.iro
+
+  const colorPicker = new iro.ColorPicker("#picker", {
+    // Set the size of the color picker
+    width: 250,
+    // Set the initial color to pure red
+    color: "#f00"
+  })
+
 })
 
