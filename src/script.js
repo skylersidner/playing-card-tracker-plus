@@ -185,20 +185,34 @@ $(function() {
     return confirm("Are you sure you want to reset the table?");
   } 
   
+  function setAltColor(altColor) {
+    const altColorRow = $(".alt-color")
+    altColorRow.css("color", altColor)
+  }
+
+  function initializeColorPicker() {
+    //documentation can be found at https://iro.js.org
+
+    const iro = window.iro
+
+    const colorPicker = new iro.ColorPicker("#picker", {
+      // Set the size of the color picker
+      width: 250,
+      // Set the initial color to pure red
+      color: "#f00"
+    })
+    colorPicker.on('color:change', function(color) {
+      setAltColor(color.hexString)
+    })
+    return colorPicker.color.hexString
+  }
+
+
+
   createAceHighLowToggle()
   buildTrackingTable()
   bindResetButton()
-
-  //documentation can be found at https://iro.js.org
-
-  const iro = window.iro
-
-  const colorPicker = new iro.ColorPicker("#picker", {
-    // Set the size of the color picker
-    width: 250,
-    // Set the initial color to pure red
-    color: "#f00"
-  })
-
+  const hex = initializeColorPicker()
+  setAltColor(hex)
 })
 
