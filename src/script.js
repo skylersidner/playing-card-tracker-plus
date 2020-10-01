@@ -125,6 +125,8 @@ $(function() {
     const suitName = suit.name
     if (suitName === 'Diamonds' || suitName === 'Hearts') {
       row.addClass('alt-color')
+    } else {
+      row.addClass('primary-color')
     }
 
     row.append(...rowCells)
@@ -182,12 +184,12 @@ $(function() {
   }
   
   function confirmReset() {
-    return confirm("Are you sure you want to reset the table?");
+    return confirm("Are you sure you want to reset the table?")
   } 
   
-  function setAltColor(altColor) {
-    const altColorRow = $(".alt-color")
-    altColorRow.css("color", altColor)
+  function setColor(color, rowReference) {
+    const colorRows = $(`.${rowReference}-color`)
+    colorRows.css("color", color)
   }
 
   function initializeColorPicker() {
@@ -202,7 +204,8 @@ $(function() {
       color: "#f00"
     })
     colorPicker.on('color:change', function(color) {
-      setAltColor(color.hexString)
+      const selectedToggleValue = $("input[name='color-toggle']:checked").val()
+      setColor(color.hexString, selectedToggleValue)
     })
     return colorPicker.color.hexString
   }
@@ -213,6 +216,6 @@ $(function() {
   buildTrackingTable()
   bindResetButton()
   const hex = initializeColorPicker()
-  setAltColor(hex)
+  setColor(hex, "alt")
 })
 
