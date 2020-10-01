@@ -94,6 +94,7 @@ let cardSuit, cardRank
 
 // jquery initialization function
 $(function() {
+  let colorPicker;
 
   function selectCell(cell) {
     cell.addClass('selected')
@@ -197,25 +198,45 @@ $(function() {
 
     const iro = window.iro
 
-    const colorPicker = new iro.ColorPicker("#picker", {
+    const colorPickerInstance = new iro.ColorPicker("#picker", {
       // Set the size of the color picker
       width: 250,
       // Set the initial color to pure red
       color: "#f00"
     })
-    colorPicker.on('color:change', function(color) {
+
+    colorPickerInstance.on('color:change', function(color) {
       const selectedToggleValue = $("input[name='color-toggle']:checked").val()
       setColor(color.hexString, selectedToggleValue)
     })
-    return colorPicker.color.hexString
+
+    return colorPickerInstance
   }
 
+  function handleColorPickerRadioClick(event) {
+    // get the id from the target, separate by dash into an array (e.g.: "radio-alt" => ["radio", "alt"])
+    // and grab the second element in the array ("alt")
+    const targetId = event.currentTarget.id
+    const rowId = targetId.split("-")[1]
 
+    // use this Id to get the corresponding row and see the color css attribute
+    const row = $(`.${rowId}-color`)
+    const currentRowColor = row.css('color')
+
+    // set the color on the picker
+    colorPicker.color.set(currentRowColor)
+  }
+
+  function setColorPickerRadioOnClick() {
+    const colorPickerRadioButtons = $("input[name='color-toggle']");
+    colorPickerRadioButtons.click(handleColorPickerRadioClick)
+  }
 
   createAceHighLowToggle()
   buildTrackingTable()
   bindResetButton()
-  const hex = initializeColorPicker()
-  setColor(hex, "alt")
+  colorPicker = initializeColorPicker()
+  setColor(colorPicker.color.hexString, "alt")
+  setColorPickerRadioOnClick()
 })
 
