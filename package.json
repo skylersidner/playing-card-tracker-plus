@@ -1,0 +1,27 @@
+{
+  "name": "playing-card-tracker-plus",
+  "version": "1.0.0",
+  "description": "Tracks which cards have been played in a game so far",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skylersidner/playing-card-tracker-plus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skylersidner/playing-card-tracker-plus/issues"
+  },
+  "homepage": "https://github.com/skylersidner/playing-card-tracker-plus#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
