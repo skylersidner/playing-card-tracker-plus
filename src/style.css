@@ -27,12 +27,12 @@ h1 {
     font-size: 16px;
 }
 
-    #reset {
+#reset {
     width: 100px;
     font-size: 14px;
     color: black;
     border-radius: 3px;
-cursor: pointer;
+    cursor: pointer;
     background-color: white;
 }
 #reset:hover {
