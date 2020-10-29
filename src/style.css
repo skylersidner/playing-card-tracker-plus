@@ -47,3 +47,7 @@ h1 {
 .icon {
     font-size: 20px;
 }
+
+.hidden {
+    display: none;
+}

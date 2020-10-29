@@ -130,6 +130,9 @@ $(function() {
       row.addClass('primary-color')
     }
 
+    rowCells[0].addClass('first-ace')
+    rowCells[13].addClass('last-ace')
+
     row.append(...rowCells)
     return row
   }
@@ -137,23 +140,24 @@ $(function() {
   function buildTrackingTable() {
     const trackingTableWrapper = $('#tracking-table-wrapper')
     const trackingTable = $('<table id="tracking-table"></table>')
+    const rows = suits.map(suit => buildRow(suit, baseRanks))
 
-    const aceToggle = $('#ace-high-toggle')
-    const isChecked = aceToggle.is(":checked")
-
-    let ranks
-    if (isChecked) {
-      ranks = baseRanks.slice(1, 14) // use end ace
-    } else {
-      ranks = baseRanks.slice(0, 13) // use beginning ace
-    }
-
-    const rows = suits.map(suit => buildRow(suit, ranks))
 
     trackingTable.append(...rows)
-
-
     trackingTableWrapper.html(trackingTable)
+    hideInactiveAces()
+  }
+
+  function hideInactiveAces() {
+    const aceToggle = $('#ace-high-toggle')
+    const isChecked = aceToggle.is(":checked")
+    if (isChecked) {
+      const firstAces = $('.first-ace')
+      firstAces.each((idx, ace) => $(ace).addClass('hidden'))
+    } else {
+      const lastAces = $('.last-ace')
+      lastAces.each((idx, ace) => $(ace).addClass('hidden'))
+    }
   }
 
   function resetTable() {
